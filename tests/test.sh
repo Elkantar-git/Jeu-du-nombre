@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 function Test {
   local testcase="$1"
   local rand_nbr="$2"
@@ -11,3 +13,5 @@ function Test {
 
 Test test1 42 "50\n30\n0\n100\n42\nn\n"
 Test test2 13 "13\n"
+
+python3 main.py

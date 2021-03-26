@@ -54,7 +54,7 @@ def Write_score():
 
 def Get_rand_nbr():
 	rand_nbr = os.getenv("TEST_RAND_NBR")
-	if rand_nbr == "":
+	if rand_nbr == None:
 		rand_nbr = random.randint(0, 100)
 	else:
 		rand_nbr = int(rand_nbr)
