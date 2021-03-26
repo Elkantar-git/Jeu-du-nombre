@@ -1,5 +1,6 @@
 # IMPORT
 import random
+import os
 
 # VARIABLES
 comp_nbr = True
@@ -51,13 +52,20 @@ def Write_score():
 	highscore.write(liste_str + '\n')
 	highscore.close()
 
+def Get_rand_nbr():
+	rand_nbr = os.getenv("TEST_RAND_NBR")
+	if rand_nbr == "":
+		rand_nbr = random.randint(0, 100)
+	else:
+		rand_nbr = int(rand_nbr)
+	print(rand_nbr)
+	return rand_nbr
+
 
 # MAIN
 listef = Read_score()
 while go_start == True:
-
-	rand_nbr = random.randint(0, 100)
-	print(rand_nbr)
+	rand_nbr = Get_rand_nbr()
 
 	#pseudo = input('Quel est votre pseudo ? ')
 

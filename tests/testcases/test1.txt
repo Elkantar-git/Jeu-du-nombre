@@ -1,0 +1,8 @@
+42
+Choisisser un nombre entre 0 et 100 Moins
+Choisisser un nombre entre 0 et 100 Plus
+Choisisser un nombre entre 0 et 100 Plus
+Choisisser un nombre entre 0 et 100 Moins
+Choisisser un nombre entre 0 et 100 Gagné !
+4  erreurs
+['4']

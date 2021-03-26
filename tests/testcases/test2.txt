@@ -1,0 +1,4 @@
+13
+Choisisser un nombre entre 0 et 100 Gagné !
+0  erreurs
+['0']
