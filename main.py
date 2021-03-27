@@ -18,7 +18,7 @@ def Choisir_nbr():
 	return (nbr)
 
 
-def Comparaison(nbr, comp_nbr):
+def Comparaison(nbr, comp_nbr, pseudo):
 	erreur = 0
 	while comp_nbr == True:
 		if nbr > rand_nbr:
@@ -31,7 +31,7 @@ def Comparaison(nbr, comp_nbr):
 	else:
 		print('Gagné !')
 		print(erreur, ' erreurs')
-	liste.append(str(erreur))
+	liste.append((pseudo, str(erreur)))
 	print(liste)
 
 
@@ -41,7 +41,11 @@ def Read_score():
 	  "r+",
 	)
 	liste_str = highscore.read()
-	listef = liste_str.split()
+	listef = liste_str.split('\n')
+	listef = list(filter(lambda x: x != '', listef))
+	listef = list(map(lambda x: x.split(' '), listef))
+	listef = list(map(lambda x: tuple(x), listef))
+
 	return (listef)
 
 
@@ -50,7 +54,8 @@ def Write_score():
     "Highscore.txt",
     "a+",
 	)
-	liste_str = '\n'.join(liste)
+	liste_str = list(map(lambda x: x[0] + ' ' + str(x[1]), liste))
+	liste_str =	'\n'.join(liste_str)
 	highscore.write(liste_str + '\n')
 	highscore.close()
 
@@ -63,29 +68,38 @@ def Get_rand_nbr():
 	print(rand_nbr)
 	return rand_nbr
 
+def Show_score():
+	xx = []
+	for x in range(0, 3):
+		xx.append(' : '.join(listef[x]))  
+	print('Les 3 meilleur score sont : ', *xx)
+
+
 
 # MAIN
 listef = Read_score()
 while go_start == True:
 	rand_nbr = Get_rand_nbr()
 
-	#pseudo = input('Quel est votre pseudo ? ')
+	pseudo = input('Quel est votre pseudo ? ')
 
 	nbr = Choisir_nbr()
 	comp_nbr = nbr != rand_nbr
 
-	Comparaison(nbr, comp_nbr)
+	Comparaison(nbr, comp_nbr, pseudo)
 
 	go = input('Voulez-vous continuer ? ("o/n") ')
 	go_start = go == 'o'
 
 listef = listef + liste
-listef = sorted(listef)
+print(listef)
+
+listef = sorted(listef, key=lambda x: x[1])
 
 for x in range(len(listef) + 1, 4):
-	listef.append('Top ' + str(x))
+	listef.append(('Top', str(x)))
 	print(listef)
- 
-print('Vos 3 meilleur score sont : ', listef[0], listef[1], listef[2])
 
+
+Show_score()
 Write_score()
