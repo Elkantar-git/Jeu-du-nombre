@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 # IMPORT
 import random
 import os
@@ -80,10 +82,10 @@ while go_start == True:
 listef = listef + liste
 listef = sorted(listef)
 
-#for x in range(len(listef) - 1):
-#	listef.append('Top ' + str(x))
-#	print(listef)
-
+for x in range(len(listef) + 1, 4):
+	listef.append('Top ' + str(x))
+	print(listef)
+ 
 print('Vos 3 meilleur score sont : ', listef[0], listef[1], listef[2])
 
 Write_score()
